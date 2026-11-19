@@ -1,0 +1,12 @@
+Сборка под Windows (MinGW-w64, x64), один статический .exe без зависимостей:
+
+  x86_64-w64-mingw32-windres app.rc -O coff -o app.o
+  x86_64-w64-mingw32-g++ -O2 -std=c++17 -static -mwindows -municode main.cpp app.o -o GammaSpectrometer.exe -lgdi32
+
+Проверка ядра без Windows (консоль, Linux/macOS):
+  g++ -O2 -std=c++17 test_core.cpp -o test_core && ./test_core
+
+Файлы:
+  core.hpp       физика: данные NIST, закон Бугера–Ламберта, спектр, анализ пиков, NNLS
+  main.cpp       интерфейс на Win32 API
+  test_core.cpp  консольный тест ядра (Монте-Карло по пресетам)
